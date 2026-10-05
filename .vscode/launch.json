@@ -1,0 +1,67 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Демо без LLM (--demo --offline)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "sales_analyst",
+      "args": ["--demo", "--offline"],
+      "cwd": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Демо с LLM (--demo, нужен ANTHROPIC_API_KEY в .env)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "sales_analyst",
+      "args": ["--demo"],
+      "cwd": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Демо: свой запрос",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "sales_analyst",
+      "args": ["--demo", "--offline", "${input:request}"],
+      "cwd": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "Реальный amoCRM (заполнить .env)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "sales_analyst",
+      "args": ["${input:request}"],
+      "cwd": "${workspaceFolder}",
+      "envFile": "${workspaceFolder}/.env",
+      "console": "integratedTerminal",
+      "justMyCode": true
+    },
+    {
+      "name": "pytest (все тесты)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["-v"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal",
+      "justMyCode": false
+    }
+  ],
+  "inputs": [
+    {
+      "id": "request",
+      "type": "promptString",
+      "description": "Запрос руководителя",
+      "default": "Проанализируй работу отдела продаж за последние 30 дней"
+    }
+  ]
+}
